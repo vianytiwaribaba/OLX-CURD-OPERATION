@@ -1,0 +1,51 @@
+﻿@model DealDoubleDash.Entities.tbl_Auction
+
+<h2>Edit</h2>
+
+
+<form method="post" id="editform">
+
+    <input type="hidden" value="@Model.id" name="id" />
+
+    <label>Title</label>
+    <input name="Title" value="@Model.Title" />
+    <br />
+
+    <label>Description</label>
+    <input name="Description" value="@Model.Description" />
+    <br />
+
+    <label>ActualAmount</label>
+    <input name="ActualAmount" value="@Model.ActualAmount" />
+    <br />
+
+    <label>StartingTime</label>
+    <input name="StartingTime" value="@Model.StartingTime" />
+    <br />
+
+    <label>EndindTime</label>
+    <input name="EndindTime" value="@Model.EndindTime" />
+    <br />
+
+    <button id="saveButton" type="button" class="btn btn-danger">Save</button>
+
+</form>
+
+
+
+<script>
+    $("#saveButton").click(function () {
+        $.ajax({
+            url: "/Auction/Edit/",
+            method: "post",
+            data: $("#editform").serialize()
+        })
+            .done(function (response) {
+
+                $("#listingArea").html(response);
+            })
+            .fail(function () {
+
+            });
+    });
+</script>
